@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preload" href="CSS/normalize.css" as="style">
+    <link rel="style" href="CSS/normalize.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Krub&family=Montserrat:ital,wght@0,200;1,200&family=Quicksand:wght@300;600&display=swap" rel="stylesheet">
+
+
+    <link rel="preload" href="CSS/estilos.css" as = "style">
+    <link rel="stylesheet" href="CSS/estilos.css">
+
+    <link rel="preload" href="CSS/miCuenta.css" as = "style">
+    <link rel="stylesheet" href="CSS/miCuenta.css">
+    
+    <title>Inicia Sesión o Registrate</title>
+</head>
+<body>
+    <div class="iniciarSesion">
+        <div class="contenedor sombra formularios">
+            <h2>Inicia Sesión</h2>
+
+            <form id="formIniciarSesion" name="formularioIniciarSesion" method="post" action="PHP/IniciarSesion.php">
+                                
+                <div class="campos">
+                    <label>Usuario:</label>
+                    <input class="input-text" type="text" name="user" id="user" size="20">
+                </div>
+
+                <div class="campos">
+                    <label>Contraseña:</label>
+                    <input class="input-text" type="password" name="pass" id="pass" size="20">
+                </div>
+
+                <div class="campos">
+                    <button class="boton">Iniciar Sesion</button>
+                </div>  
+                                
+            </form>
+        </div>
+
+        <div class="contenedor sombra formularios">
+            <h2>Registrate por primera vez</h2>
+
+            <form id="formRegistrarse" name="formularioRegistrase" method="post" action="PHP/Registrarse.php">
+
+                <div class="campos">
+                    <label>Nombre de usuario:</label>
+                    <input class="input-text" type="text" name="usuario" id="usuario" size="20">
+                </div>
+
+                <div class="campos">
+                    <label>Contraseña:</label>
+                    <input class="input-text" type="password" name="contra" id="contra" size="20">
+                </div>
+                
+                <div class="campos">
+                    <button class="boton">Registrarme</button>
+                </div>             
+                
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
