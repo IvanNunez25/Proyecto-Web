@@ -19,6 +19,11 @@
     <link rel="preload" href="CSS/estilos.css" as = "style">
     <link rel="stylesheet" href="CSS/estilos.css">
 
+    <!-- <link rel="stylesheet" href="CSS/slider.css"> -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script src="JavaScript/carrusel.js" defer></script>
+
     <title>K-STORE!</title>
 </head>
 <body>
@@ -50,91 +55,25 @@
 
         <h2>Productos más recientes:</h2>
 
-        <div class="galeria">
 
-            <?php
-                $sql = "SELECT art_nombre, dis_nombre FROM productosmasrecientes LIMIT 6;";
-                $ejecucion = mysqli_query($conexion, $sql);
-            ?>
-
-            <div class="imgGral">
-                <?php
-                    $fila = mysqli_fetch_assoc($ejecucion);
-                    $nombre_artista = $fila['art_nombre'];
-                    $nombre_disco = $fila['dis_nombre'];
-                ?>
-                <img src="Imagenes/Albums/<?php echo $nombre_artista . " - " . $nombre_disco; ?>.jpeg">                
-                <div class="sombreado">                               
-                    <h2><?php echo $nombre_disco; ?></h2>
-                    <h3><?php echo $nombre_artista; ?></h3>
-                </div>                        
-            </div>
-    
-            <div class="imgGral">
-                <?php
-                    $fila = mysqli_fetch_assoc($ejecucion);
-                    $nombre_artista = $fila['art_nombre'];
-                    $nombre_disco = $fila['dis_nombre'];
-                ?>
-                <img src="Imagenes/Albums/<?php echo $nombre_artista . " - " . $nombre_disco; ?>.jpeg">                
-                <div class="sombreado">                               
-                    <h2><?php echo $nombre_disco; ?></h2>
-                    <h3><?php echo $nombre_artista; ?></h3>
-                </div>                        
-            </div>
-    
-            <div class="imgGral">
-                <?php
-                    $fila = mysqli_fetch_assoc($ejecucion);
-                    $nombre_artista = $fila['art_nombre'];
-                    $nombre_disco = $fila['dis_nombre'];
-                ?>
-                <img src="Imagenes/Albums/<?php echo $nombre_artista . " - " . $nombre_disco; ?>.jpeg">                
-                <div class="sombreado">                               
-                    <h2><?php echo $nombre_disco; ?></h2>
-                    <h3><?php echo $nombre_artista; ?></h3>
-                </div>                        
-            </div>
-    
-            <div class="imgGral">
-                <?php
-                    $fila = mysqli_fetch_assoc($ejecucion);
-                    $nombre_artista = $fila['art_nombre'];
-                    $nombre_disco = $fila['dis_nombre'];
-                ?>
-                <img src="Imagenes/Albums/<?php echo $nombre_artista . " - " . $nombre_disco; ?>.jpeg">                
-                <div class="sombreado">                               
-                    <h2><?php echo $nombre_disco; ?></h2>
-                    <h3><?php echo $nombre_artista; ?></h3>
-                </div>                        
-            </div>
-    
-            <div class="imgGral">
-                <?php
-                    $fila = mysqli_fetch_assoc($ejecucion);
-                    $nombre_artista = $fila['art_nombre'];
-                    $nombre_disco = $fila['dis_nombre'];
-                ?>
-                <img src="Imagenes/Albums/<?php echo $nombre_artista . " - " . $nombre_disco; ?>.jpeg">                
-                <div class="sombreado">                               
-                    <h2><?php echo $nombre_disco; ?></h2>
-                    <h3><?php echo $nombre_artista; ?></h3>
-                </div>                        
-            </div>
-    
-            <div class="imgGral">
-                <?php
-                    $fila = mysqli_fetch_assoc($ejecucion);
-                    $nombre_artista = $fila['art_nombre'];
-                    $nombre_disco = $fila['dis_nombre'];
-                ?>
-                <img src="Imagenes/Albums/<?php echo $nombre_artista . " - " . $nombre_disco; ?>.jpeg">                
-                <div class="sombreado">                               
-                    <h2><?php echo $nombre_disco; ?></h2>
-                    <h3><?php echo $nombre_artista; ?></h3>
-                </div>                        
-            </div>
+        <div class="wrapper">
+        <i id="left" class='bx bx-chevron-left'></i>
+        <div class="carrusel">
+            <img src="Imagenes/Albums/(G)I-DLE - I love.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/AKMU - NEXT EPISODE.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/Baekhyun - Bambi.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/BIBI - Lowlife Princess - Noir.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/BLACKPINK - BORN PINK.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/CHUNG HA - Bare&Rare, Pt.1.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/EXO-SC - 1 Billion Views.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/HEIZE - Undo.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/JISOO - ME.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/Kai - Peaches.jpeg" alt="" draggable="false">
+            <img src="Imagenes/Albums/MAMAMOO - MIC ON.jpeg" alt="" draggable="false">
         </div>
+        <i id="right" class='bx bx-chevron-right' ></i>
+    </div>
+
     </div>
 
     <div class="estadisticas"> <!-- ------------------------------ -->
