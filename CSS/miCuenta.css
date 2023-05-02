@@ -11,7 +11,8 @@
 body{
     /* background: rgb(242,184,128);
     background: linear-gradient(90deg, rgba(242,184,128,1) 20%, rgba(201,134,134,1) 77%); */
-
+    font-family: 'Work Sans', sans-serif;  
+    
     background: #654ea3;
     background: -webkit-linear-gradient(to bottom, #eaafc8, #654ea3);
     background: linear-gradient(to left, #eaafc8, #654ea3);
