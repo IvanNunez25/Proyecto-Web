@@ -55,21 +55,25 @@
 
         <h2>Productos más recientes:</h2>
 
+        <?php
+            $sql = "SELECT * FROM productosmasrecientes LIMIT 10;";
+            $ejecucion = mysqli_query($conexion, $sql);        
+        ?>
 
         <div class="wrapper">
         <i id="left" class='bx bx-chevron-left'></i>
         <div class="carrusel">
-            <img src="Imagenes/Albums/(G)I-DLE - I love.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/AKMU - NEXT EPISODE.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/Baekhyun - Bambi.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/BIBI - Lowlife Princess - Noir.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/BLACKPINK - BORN PINK.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/CHUNG HA - Bare&Rare, Pt.1.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/EXO-SC - 1 Billion Views.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/HEIZE - Undo.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/JISOO - ME.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/Kai - Peaches.jpeg" alt="" draggable="false">
-            <img src="Imagenes/Albums/MAMAMOO - MIC ON.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
+            <img <?php $fila = mysqli_fetch_assoc($ejecucion); ?> src="Imagenes/Albums/<?php echo $fila['art_nombre'] . ' - ' . $fila['dis_nombre'] ?>.jpeg" alt="" draggable="false">
         </div>
         <i id="right" class='bx bx-chevron-right' ></i>
     </div>
