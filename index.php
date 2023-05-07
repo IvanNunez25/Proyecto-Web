@@ -42,7 +42,7 @@
             <a href="catalogo.php">Catalogo</a>
             <a href="#">Contacto</a>                        
             <a href="#">Sobre Nosotros</a>
-            <a href="administrador.html">Administrador</a>
+            <a href="PHP/CuentaAdmin.php">Administrador</a>
         </nav>
     </div>
 
