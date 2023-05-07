@@ -26,7 +26,7 @@
         <div class="contenedor sombra formularios">
             <h2>Inicia Sesión</h2>
 
-            <form id="formIniciarSesion" name="formularioIniciarSesion" method="post" action="PHP/IniciarSesion.php">
+            <form id="formIniciarSesion" name="formularioIniciarSesion" onsubmit="return ValidarInicio()" method="post" action="PHP/IniciarSesion.php">
                                 
                 <div class="campos">
                     <label>Usuario:</label>
@@ -48,7 +48,7 @@
         <div class="contenedor sombra formularios">
             <h2>Registrate por primera vez</h2>
 
-            <form id="formRegistrarse" name="formularioRegistrase" method="post" action="PHP/Registrarse.php">
+            <form id="formRegistrarse" name="formularioRegistrase" onsubmit="return ValidarRegistro()" method="post" action="PHP/Registrarse.php">
 
                 <div class="campos">
                     <label>Nombre de usuario:</label>
@@ -67,6 +67,8 @@
             </form>
         </div>
     </div>
+
+    <script src="JavaScript/validaciones.js"></script>
     
 </body>
 </html>

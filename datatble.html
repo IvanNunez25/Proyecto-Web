@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/datatable.css">
+
+    <title>Document</title>
+
+</head>
+<body>
+
+    <div class="datatable-container">
+
+        <div class="header-tools">
+            <div class="tools">
+                <ul>
+                    <li>
+                        <span><input type="checkbox"></span>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">add_circle</i></button>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">edit</i></button>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">delete</i></button>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">share</i></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input type="text" name="" id="" class="search-input">
+            </div>
+        </div> 
+
+        <table id="datatable" class="datatable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Artista</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <?php ?>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <!-- <td><span class="available"></span></td> -->
+                    <td>Red Velvet</td>
+                    <td>The ReVe Festival 2022</td>
+                    <td>599</td>
+                    <td>3</td>
+                    <td>1797</td>
+                </tr>
+
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <!-- <td><span class="available"></span></td> -->
+                    <td>Day6</td>
+                    <td>Moonrise</td>
+                    <td>399</td>
+                    <td>2</td>
+                    <td>897</td>
+                </tr>
+
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <!-- <td><span class="available"></span></td> -->
+                    <td>Taeyeon</td>
+                    <td>INVU</td>
+                    <td>599</td>
+                    <td>2</td>
+                    <td>1297</td>
+                </tr>
+
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <!-- <td><span class="available"></span></td> -->
+                    <td>SeulGi</td>
+                    <td>28 Reasons</td>
+                    <td>649</td>
+                    <td>1</td>
+                    <td>649</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer-tools">
+            <div class="list-items">
+                Show
+                <select name="n-entries" id="n-entries" class="n-entries">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+
+            <div class="pages">
+                <ul>
+                    <li><span class="active">1</span></li>
+                    <li><button>2</button></li>
+                    <li><button>3</button></li>
+                    <li><button>4</button></li>
+                    <li><span>...</span></li>
+                    <li><button>9</button></li>
+                    <li><button>10</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     
+    
+    <script src="JavaScript/datatable.js"></script>
+    <script>
+        const dt = new DataTable('#datatable', [
+            {
+                id: 'bAdd',
+                text: 'agregar',
+                icon: 'add_circle',
+                action: function(){
+
+                }
+            }
+        ]);
+
+        dt.parse();
+    </script>
+
+
+</body>
+</html>

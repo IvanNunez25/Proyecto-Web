@@ -26,6 +26,10 @@
 
     <!-- <link rel="preload" href="CSS/miCuenta.css" as = "style">
     <link rel="stylesheet" href="CSS/miCuenta.css"> -->
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/datatable.css">
+
 
     <link rel="preload" href="CSS/estilos.css" as = "style">
     <link rel="stylesheet" href="CSS/estilos.css">
@@ -76,6 +80,98 @@
                     echo $car_productos;
 
                     
+                    // if($car_productos > 0){
+
+                    //     $consultaSQL = "SELECT a.art_nombre, d.dis_nombre, d.dis_precioUnitario, cd.cardis_cantidad
+                    //                     FROM artistas as a
+                    //                     JOIN discos as d ON (a.art_id = d.art_id)
+                    //                     JOIN carritos_discos as cd ON (d.dis_id = cd.dis_id)
+                    //                     JOIN carritos as c ON (cd.car_id = c.car_id)
+                    //                     JOIN clientes as cl ON (c.cte_id = cl.cte_id)
+                    //                     WHERE cl.cte_nombre = '".$_SESSION['usuario']."';";
+                    //     $ejecucion = mysqli_query($conexion, $consultaSQL); 
+
+                    //     echo '<br><br><table class="carrito-productos">';
+
+                    //     echo "<thead>";
+                    //     echo "<tr>";
+                    //     echo "<td> ARTISTA </td>";
+                    //     echo "<td> PRODUCTO </td>";
+                    //     echo "<td> PRECIO UNITARIO </td>";
+                    //     echo "<td> CANTIDAD </td>";
+                    //     echo "<td style='text-align: center'> TOTAL </td>";
+                    //     echo "</tr>";
+                    //     echo "</thead>";
+
+                    //     $total = 0;
+                    //     while($resultado = mysqli_fetch_assoc($ejecucion)){
+                    //         echo "<tr>";
+                    //         echo "<td>" . $resultado['art_nombre'] . "</td>";
+                    //         echo "<td>" . $resultado['dis_nombre'] . "</td>";
+                    //         echo "<td>" . $resultado['dis_precioUnitario'] . "</td>";
+                    //         echo "<td>" . $resultado['cardis_cantidad'] . "</td>";                            
+                    //         echo "<td style='text-align: center'>$" . $resultado['dis_precioUnitario'] * $resultado['cardis_cantidad'] . "</td>";
+
+                    //         $total += $resultado['dis_precioUnitario'] * $resultado['cardis_cantidad'];
+                    //         echo "</tr>";
+                    //     }
+
+                    //     echo "<tr>";
+                    //     echo "<td></td>";
+                    //     echo "<td></td>";
+                    //     echo "<td></td>";
+                    //     echo "<td></td>";
+                    //     echo "<td style='text-align: center'> Total: $" . $total . "</td>";
+                    //     echo "</tr>";
+
+                    //     echo "</table>";
+                    // }
+                ?>
+            </h3>
+
+            <div class="datatable-container">
+
+        <div class="header-tools">
+            <div class="tools">
+                <ul>
+                    <li>
+                        <span><input type="checkbox"></span>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">add_circle</i></button>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">edit</i></button>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">delete</i></button>
+                    </li>
+                    <li>
+                        <button><i class="material-icons">share</i></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input type="text" name="" id="" class="search-input">
+            </div>
+        </div> 
+
+        <table id="datatable" class="datatable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Artista</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>                    
+                <?php 
+
                     if($car_productos > 0){
 
                         $consultaSQL = "SELECT a.art_nombre, d.dis_nombre, d.dis_precioUnitario, cd.cardis_cantidad
@@ -87,21 +183,10 @@
                                         WHERE cl.cte_nombre = '".$_SESSION['usuario']."';";
                         $ejecucion = mysqli_query($conexion, $consultaSQL); 
 
-                        echo '<br><br><table class="carrito-productos">';
-
-                        echo "<thead>";
-                        echo "<tr>";
-                        echo "<td> ARTISTA </td>";
-                        echo "<td> PRODUCTO </td>";
-                        echo "<td> PRECIO UNITARIO </td>";
-                        echo "<td> CANTIDAD </td>";
-                        echo "<td style='text-align: center'> TOTAL </td>";
-                        echo "</tr>";
-                        echo "</thead>";
-
                         $total = 0;
                         while($resultado = mysqli_fetch_assoc($ejecucion)){
                             echo "<tr>";
+                            echo "<td class='table-checkbox'><input type='checkbox' name='' id=''></td>";
                             echo "<td>" . $resultado['art_nombre'] . "</td>";
                             echo "<td>" . $resultado['dis_nombre'] . "</td>";
                             echo "<td>" . $resultado['dis_precioUnitario'] . "</td>";
@@ -112,18 +197,78 @@
                             echo "</tr>";
                         }
 
-                        echo "<tr>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td style='text-align: center'> Total: $" . $total . "</td>";
-                        echo "</tr>";
-
-                        echo "</table>";
                     }
                 ?>
-            </h3>
+            </tbody>
+        </table>
+
+            <!-- <tbody>
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <td><span class="available"></span></td>
+                    <td>Red Velvet</td>
+                    <td>The ReVe Festival 2022</td>
+                    <td>599</td>
+                    <td>3</td>
+                    <td>1797</td>
+                </tr>
+
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <td><span class="available"></span></td>
+                    <td>Day6</td>
+                    <td>Moonrise</td>
+                    <td>399</td>
+                    <td>2</td>
+                    <td>897</td>
+                </tr>
+
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <td><span class="available"></span></td>
+                    <td>Taeyeon</td>
+                    <td>INVU</td>
+                    <td>599</td>
+                    <td>2</td>
+                    <td>1297</td>
+                </tr>
+
+                <tr>
+                    <td class="table-checkbox"><input type="checkbox" name="" id=""></td>
+                    <td><span class="available"></span></td>
+                    <td>SeulGi</td>
+                    <td>28 Reasons</td>
+                    <td>649</td>
+                    <td>1</td>
+                    <td>649</td>
+                </tr>
+            </tbody>
+        </table> -->
+
+        <div class="footer-tools">
+            <div class="list-items">
+                Show
+                <select name="n-entries" id="n-entries" class="n-entries">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+
+            <div class="pages">
+                <ul>
+                    <li><span class="active">1</span></li>
+                    <li><button>2</button></li>
+                    <li><button>3</button></li>
+                    <li><button>4</button></li>
+                    <li><span>...</span></li>
+                    <li><button>9</button></li>
+                    <li><button>10</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
         </div>
 
         <div class="carrito contenedor sombra">

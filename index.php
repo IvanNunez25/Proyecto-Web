@@ -42,6 +42,7 @@
             <a href="catalogo.php">Catalogo</a>
             <a href="#">Contacto</a>                        
             <a href="#">Sobre Nosotros</a>
+            <a href="admin.html">Administrador</a>
         </nav>
     </div>
 

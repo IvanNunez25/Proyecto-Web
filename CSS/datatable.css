@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+:root {
+    --color-primario: white;
+    --color-secundario: #454545;
+    --color-resaltado: #3282b8;
+
+    --dt-padding: 12px;
+    --dt-padding-s: 6px;
+    --dt-padding-xs: 2px;
+
+    --dt-border-radius: 3px;
+}
+
+.material-icons {
+    font-size: 16px;
+}
+
+.datatable-container {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--color-secundario);
+    border-radius: var(--dt-border-radius);
+    color: var(--color-primario);
+    width: 100%;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.datatable-container .header-tools {
+    border-bottom: solid 1px var(--color-primario);
+    padding: 12px;
+    display: flex;
+    align-items: baseline;
+}
+
+.datatable-container .header-tools .search {
+    width: 30%;
+}
+
+.datatable-container .header-tools .search .search-input {
+    width: 100%;
+    background-color: var(--color-primario);
+    display: block;
+    box-sizing: border-box;
+    border-radius: var(--dt-border-radius);
+    border: solid 1px var(--color-secundario);
+    color: var(--color-secundario);
+}
+
+.datatable-container .header-tools .tools {
+    width: 70%;
+}
+
+.datatable-container .header-tools .tools ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+}
+
+.datatable-container .header-tools .tools ul li {
+    display: inline-block;
+    margin: 0 var(--dt-padding-xs);
+    align-items: baseline;
+}
+
+.datatable-container .footer-tools {
+    padding: var(--dt-padding);
+    display: flex;
+    align-items: baseline;
+}
+
+.datatable-container .footer-tools .list-items {
+    width: 50%;
+}
+
+.datatable-container .footer-tools .pages {
+    margin-left: auto;
+    margin-right: 0;
+    width: 50%;    
+}
+
+.datatable-container .footer-tools .pages ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+.datatable-container .footer-tools .pages ul li {
+    display: inline-block;
+    margin:  0 var(--dt-padding-xs);
+}
+
+.datatable-container .footer-tools .pages ul li button,
+.datatable-container .header-tools .tools ul li button {
+    color: var(--color-primario);
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: var(--dt-border-radius);
+    background: transparent;
+    cursor: pointer;
+}
+
+.datatable-container .footer-tools .pages ul li button:hover,
+.datatable-container .header-tools .tools ul li button:hover {
+    background: var(--color-resaltado);
+}
+
+.datatable-container .footer-tools .pages ul li span.active {
+    background: var(--color-resaltado);
+}
+
+.datatable-container .footer-tools .pages ul li button,
+.datatable-container .footer-tools .pages ul li span,
+.datatable-container .header-tools .tools ul li button {
+    padding: var(--dt-padding-s) var(--dt-padding);
+}
+
+.datatable-container .datatable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.datatable-container .datatable,
+.datatable-container .datatable th,
+.datatable-container .datatable td {
+    padding: var(--dt-padding) var(--dt-padding);
+}
+
+.datatable-container .datatable th {
+    font-weight: bolder;
+    text-align: left;
+    border-bottom: solid 1px #4e4e4e;
+}
+
+.datatable-container .datatable td {
+    border-bottom: solid 1px #4e4e4e;
+}
+
+.datatable-container .datatable tbody tr:nth-child(even){
+    background-color: #555555;
+}
+
+.datatable-container .datatable tbody tr:hover {
+    background-color: #c0c0c0;
+    color: var(--color-secundario);
+}
+
