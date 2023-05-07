@@ -37,3 +37,23 @@ function ValidarRegistro(){
 
     return true;
 }
+
+function ValidarAdmin(){
+    
+    /* Validación de campos NO vacios */
+    if((document.formularioAdministrador.usuario.value.length == 0) ||
+       (document.formularioAdministrador.password.value.length == 0)){
+
+        alert('Todos los campos deben ser llenados correctamente');
+        return false;
+    }
+
+    var expresionRegularUsuario = /^[a-zA-Z0-9 ]+$/;
+    
+    if(!(expresionRegularUsuario.test(document.formularioAdministrador.usuario.value))) {
+        alert('El nombre de usuario no debe contener caracteres especiales');
+        return false;
+    }   
+
+    return true;
+}

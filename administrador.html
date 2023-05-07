@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;1,200&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/administrador.css">
+
+    <title>Administrador</title>
+</head>
+<body>  
+
+    <div class="formulario">
+        <h1>Administrador</h1>
+        <form name="formularioAdministrador" onsubmit="return ValidarAdmin()" method="POST" action="PHP/Admin.php">
+            <div class="elementos">
+                <label>Nombre de Usuario:</label>
+                <input name="usuario" id="usuario" type="text" />
+
+                <label>Contraseña:</label>
+                <input name="password" id="password" type="password" />
+
+                <button>Ingresar</button>
+            </div>            
+        </form>
+    </div>
+    
+    <script src="JavaScript/validaciones.js"></script>
+</body>
+</html>
