@@ -20,7 +20,7 @@ if($conexion){
         header("Location: ../menuadministrador.php");
     } else {        
         session_destroy();
-        echo '<script language="javascript"> alert("Error de autentificacion"); window.location.reload() </script>';
+        echo '<script language="javascript"> alert("Error de autentificacion"); window.location.href="../administrador.html" </script>';
     }
 
     mysqli_close($conexion);
