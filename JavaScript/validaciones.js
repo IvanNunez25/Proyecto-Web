@@ -57,3 +57,20 @@ function ValidarAdmin(){
 
     return true;
 }
+
+function ValidarArtista(){
+
+    if(document.formularioInsertarArtista.artista.value.length == 0){
+        alert('El nombre del artista debe contener un valor');
+        return false;
+    }
+
+    const expresionRegularArtista = /^[^<>:"/\\|?*\x00-\x1F]+(\.[^<>:"/\\|?*\x00-\x1F]+)*$/;
+    if(!(expresionRegularArtista.test(document.formularioInsertarArtista.artista.value))){
+        alert('El nombre de artista no es válido');
+        return false;
+    }
+
+    return true;
+
+}

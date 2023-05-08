@@ -235,9 +235,27 @@ BEGIN
     
     UPDATE sesiones 
     SET ses_fin = SYSDATE() 
-    WHERE (usr_id = usuario_id);
+    WHERE (usr_id = usuario_id) AND (ses_fin IS NULL);
 END$$
 
+DELIMITER $$
+CREATE PROCEDURE insertarArtista (IN usuario VARCHAR(255), IN nombre VARCHAR(255), IN tipo VARCHAR(50))
+BEGIN	
+    DECLARE artistaRepetido INT;
+    SET artistaRepetido = (SELECT COUNT(*) FROM artistas WHERE art_nombre = nombre);
+    
+    IF artistaRepetido < 1 THEN
+		INSERT INTO artistas (art_nombre, art_tipo, ses_id)
+		VALUES (nombre, tipo, (SELECT s.ses_id 
+							   FROM sesiones AS s
+                               JOIN usuarios AS u ON (u.usr_id = s.usr_id)
+                               WHERE u.usr_nombre = usuario
+                               AND s.ses_fin IS NULL
+                               ORDER BY ses_inicio DESC
+                               LIMIT 1));
+	END IF;
+    
+END$$
 
 -- ----------------------------------------------------------------------------------------------------
 -- VISTAS ---------------------------------------------------------------------------------------------

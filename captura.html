@@ -39,24 +39,56 @@
     </header>
 
     <div class="captura">
+        <h2>Ingresa un nuevo producto:</h2>
         <div class="formulario">
-            <form name="formularioDiscos" action="">
-                
+            <form name="formularioInsertarDiscos" onclick="return ValidarDisco()" method="POST" action="PHP/InsertarDisco.php">
+                <label>Nombre: *</label>
+                <input type="text" name="disco" id="disco">
+
+                <label>Fecha de lanzamiento: *</label>
+                <input type="date" name="fecha" id="fecha">
+
+                <label>Precio: *</label>
+                <input type="number" name="precio" id="precio">
+
+                <label>Artista: *</label>
+                <select name="artista" id="artista"></select>
+
+                <button>Agregar</button>
             </form>
-        </div>
-        <div class="tabla">
-
-        </div>
-    </div>
-
-    <div class="captura">
-        <div class="formulario">
-
         </div>
         <div class="tabla">
             
         </div>
     </div>
+
+    <div class="captura">
+        <h2>Ingresa un nuevo artista:</h2>
+        <div class="formulario">
+            <form name="formularioInsertarArtista" onclick="return ValidarArtista()" method="POST" action="PHP/InsertarArtista.php">
+                <label>Nombre: *</label>
+                <input type="text" name="artista" id="artista">
+
+                <label>Tipo: *</label>
+                <select name="tipo" id="tipo">
+                    <option value="BoyGroup" selected>BoyGroup</option>
+                    <option value="GirlGroup">GirlGroup</option>
+                    <option value="Solista Masculino">Solista Masculino</option>
+                    <option value="Solista Femenina">Solista Femenina</option>
+                    <option value="Duo">Duo</option>
+                    <option value="Grupo Mixto">Grupo Mixto</option>
+                </select>
+
+                <button>Agregar</button>
+            </form>
+        </div>
+        <div class="tabla">
+            
+        </div>
+    </div>
+
+    <script src="JavaScript/menuham.js"></script>
+    <script src="JavaScript/listarArtistas.js"></script>
 
 </body>
 </html>
