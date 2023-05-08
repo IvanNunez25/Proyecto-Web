@@ -1,3 +1,11 @@
+:root{
+    --pompNpower: rgb(150, 107, 157);
+    --oldRose: rgb(201, 134, 134);
+    --fawn: rgb(242, 184, 128);
+    --seaShell: rgb(255, 244, 236);
+    --champagnePink: rgb(231, 207, 188);   
+}
+
 html {
     box-sizing: border-box;
 }
@@ -5,6 +13,8 @@ html {
 *, *::before, *::after {
     box-sizing: inherit;
 }
+
+
 
 body {
     padding: 0;
@@ -20,7 +30,8 @@ body {
 }
 
 .logo:hover {
-    background-color: #8b0b81;
+    transition: 0.3s;
+    background-color: rgb(98, 52, 105);
     border-radius: 5px;
 }
 
@@ -29,7 +40,7 @@ nav {
     align-items: center;
     justify-content: space-around;
     min-height: 80px;
-    background-color: #41145f;
+    background-color: var(--pompNpower);
 }
 
 .ham {
@@ -69,7 +80,7 @@ nav {
 }
 
 .enlaces-menu li:hover {
-    background-color: #8b0b81;
+    background-color: rgb(98, 52, 105);
     border-radius: 10px;
 }
 

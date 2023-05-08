@@ -17,6 +17,7 @@ if($conexion){
     
     if(strcmp($contrasenia, $password) == 0  && ($usuario != "" || $password != "")){        
         $_SESSION['administrador'] = $usuario;
+        $consulta = mysqli_query($conexion, "CALL iniciarSesion('".$usuario."');");
         header("Location: ../menuadministrador.php");
     } else {        
         session_destroy();

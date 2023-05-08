@@ -217,6 +217,27 @@ BEGIN
                                       WHERE (cd.car_id = carritos.car_id));
 END$$
 
+DELIMITER $$
+CREATE PROCEDURE iniciarSesion (IN usuario VARCHAR(255))
+BEGIN	
+    DECLARE usuario_id INT;
+    SET usuario_id = (SELECT usr_id FROM usuarios WHERE usr_nombre = usuario);
+    
+    INSERT INTO sesiones(ses_inicio, usr_id)
+    VALUES (SYSDATE(), usuario_id);
+END$$
+
+DELIMITER $$
+CREATE PROCEDURE cerrarSesion (IN usuario VARCHAR(255))
+BEGIN	
+    DECLARE usuario_id INT;
+    SET usuario_id = (SELECT usr_id FROM usuarios WHERE usr_nombre = usuario);
+    
+    UPDATE sesiones 
+    SET ses_fin = SYSDATE() 
+    WHERE (usr_id = usuario_id);
+END$$
+
 
 -- ----------------------------------------------------------------------------------------------------
 -- VISTAS ---------------------------------------------------------------------------------------------
@@ -272,3 +293,6 @@ LIMIT 4;
 
 INSERT INTO usuarios (usr_nombre, usr_password, usr_puesto)
 VALUES ('Ivan', aes_encrypt('ivan', 'claveContrasenia'), 'Jefe');
+
+
+SELECT * FROM sesiones;
