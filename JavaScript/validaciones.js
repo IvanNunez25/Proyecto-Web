@@ -74,3 +74,8 @@ function ValidarArtista(){
     return true;
 
 }
+
+
+function ValidarDisco() {
+    return true;
+}

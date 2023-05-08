@@ -51,6 +51,17 @@
                 <label>Precio: *</label>
                 <input type="number" name="precio" id="precio">
 
+                <label>Tipo de artista:</label>
+                <select onchange="cambiar()"  name="comboBox" id="comboBox">
+                    <option value="" selected>Todos</option>
+                    <option value="BoyGroup" >BoyGroup</option>
+                    <option value="GirlGroup" >GirlGroup</option>
+                    <option value="Solista Masculino">Solista Masculino</option>
+                    <option value="Solista Femenina">Solista Femenina</option>
+                    <option value="Duo">Duo</option>
+                    <option value="Grupo Mixto">Grupo Mixto</option>
+                </select>
+
                 <label>Artista: *</label>
                 <select name="artista" id="artista"></select>
 
@@ -65,7 +76,7 @@
     <div class="captura">
         <h2>Ingresa un nuevo artista:</h2>
         <div class="formulario">
-            <form name="formularioInsertarArtista" onclick="return ValidarArtista()" method="POST" action="PHP/InsertarArtista.php">
+            <form name="formularioInsertarArtista" onsubmit="return ValidarArtista()" method="POST" action="PHP/InsertarArtista.php">
                 <label>Nombre: *</label>
                 <input type="text" name="artista" id="artista">
 
@@ -88,6 +99,7 @@
     </div>
 
     <script src="JavaScript/menuham.js"></script>
+    <script src="JavaScript/validaciones.js"></script>
     <script src="JavaScript/listarArtistas.js"></script>
 
 </body>
