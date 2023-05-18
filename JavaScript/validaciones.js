@@ -77,5 +77,32 @@ function ValidarArtista(){
 
 
 function ValidarDisco() {
+
+    if(document.formularioInsertarDiscos.disco.value.length == 0 ||
+       document.formularioInsertarDiscos.fecha.value.length == 0 ||
+       document.formularioInsertarDiscos.precio.value.length == 0){
+
+        alert('Todos los campos deben ser llenados correctamente');
+        return false;
+    }
+
+    const expresionRegularDisco = /^[^<>:"/\\|?*\x00-\x1F]+(\.[^<>:"/\\|?*\x00-\x1F]+)*$/;
+    if(!(expresionRegularDisco.test(document.formularioInsertarDiscos.disco.value))){
+        alert('El nombre de Disco no es válido');
+        return false;
+    }
+
+    const expresionRegularPrecio = /^\d+(\.\d{1,2})?$/
+    if(!(expresionRegularPrecio.test(document.formularioInsertarDiscos.precio.value))){
+        alert('El precio debe ser un número real con máximo 2 decimales');
+        return false;
+    }
+
+    const expresionRegularExistencia = /^[0-9]+$/
+    if(!(expresionRegularExistencia.test(document.formularioInsertarDiscos.existencia.value))){
+        alert('La existencia debe ser un número entero');
+        return false;
+    }
+
     return true;
 }

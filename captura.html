@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <link rel="stylesheet" href="CSS/menuadmin.css">
+    <link rel="stylesheet" href="CSS/datatable.css">
 
     <title>Ingresar Información</title>
 </head>
@@ -40,37 +41,107 @@
 
     <div class="captura">
         <h2>Ingresa un nuevo producto:</h2>
-        <div class="formulario">
-            <form name="formularioInsertarDiscos" onclick="return ValidarDisco()" method="POST" action="PHP/InsertarDisco.php">
-                <label>Nombre: *</label>
-                <input type="text" name="disco" id="disco">
+        <div class="contenedor">
+            <div class="formulario">
+                <form name="formularioInsertarDiscos" onsubmit="return ValidarDisco()" method="POST" action="PHP/InsertarDisco.php">
+                    <label>Nombre: *</label>
+                    <input type="text" name="disco" id="disco">
 
-                <label>Fecha de lanzamiento: *</label>
-                <input type="date" name="fecha" id="fecha">
+                    <label>Fecha de lanzamiento: *</label>
+                    <input type="date" name="fecha" id="fecha">
 
-                <label>Precio: *</label>
-                <input type="number" name="precio" id="precio">
+                    <label>Precio: *</label>
+                    <input type="number" name="precio" id="precio">
 
-                <label>Tipo de artista:</label>
-                <select onchange="cambiar()"  name="comboBox" id="comboBox">
-                    <option value="" selected>Todos</option>
-                    <option value="BoyGroup" >BoyGroup</option>
-                    <option value="GirlGroup" >GirlGroup</option>
-                    <option value="Solista Masculino">Solista Masculino</option>
-                    <option value="Solista Femenina">Solista Femenina</option>
-                    <option value="Duo">Duo</option>
-                    <option value="Grupo Mixto">Grupo Mixto</option>
-                </select>
+                    <label>Existencia: *</label>
+                    <input type="number" name="existencia" id="existencia">
 
-                <label>Artista: *</label>
-                <select name="artista" id="artista"></select>
+                    <label>Tipo de artista:</label>
+                    <select onchange="cambiar()"  name="comboBox" id="comboBox">
+                        <option value="" selected>Todos</option>
+                        <option value="BoyGroup" >BoyGroup</option>
+                        <option value="GirlGroup" >GirlGroup</option>
+                        <option value="Solista Masculino">Solista Masculino</option>
+                        <option value="Solista Femenina">Solista Femenina</option>
+                        <option value="Duo">Duo</option>
+                        <option value="Grupo Mixto">Grupo Mixto</option>
+                    </select>
 
-                <button>Agregar</button>
-            </form>
+                    <label>Artista: *</label>
+                    <select name="artista" id="artista"></select>
+
+                    <button>Agregar</button>
+                </form>
+            </div>     
+
+            <div class="datatable-container">
+
+                <div class="header-tools">
+                    <div class="tools">
+                        <ul>
+                            <li>
+                                <span><input type="checkbox"></span>
+                            </li>
+                            <li>
+                                <button><i class="material-icons">add_circle</i></button>
+                            </li>
+                            <li>
+                                <button><i class="material-icons">edit</i></button>
+                            </li>
+                            <li>
+                                <button><i class="material-icons">delete</i></button>
+                            </li>
+                            <li>
+                                <button><i class="material-icons">share</i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="search">
+                        <input type="text" name="" id="" class="search-input">
+                    </div>
+                </div>  
+
+                <table id="datatable" class="datatable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Artista</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
+
+                <div class="footer-tools">
+                    <div class="list-items">
+                        Show
+                        <select name="n-entries" id="n-entries" class="n-entries">
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+
+                <div class="pages">
+                    <ul>
+                        <li><span class="active">1</span></li>
+                        <li><button>2</button></li>
+                        <li><button>3</button></li>
+                        <li><button>4</button></li>
+                        <li><span>...</span></li>
+                        <li><button>9</button></li>
+                        <li><button>10</button></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="tabla">
-            
-        </div>
+        </div>        
     </div>
 
     <div class="captura">
@@ -83,11 +154,11 @@
                 <label>Tipo: *</label>
                 <select name="tipo" id="tipo">
                     <option value="BoyGroup" selected>BoyGroup</option>
-                    <option value="GirlGroup">GirlGroup</option>
-                    <option value="Solista Masculino">Solista Masculino</option>
-                    <option value="Solista Femenina">Solista Femenina</option>
+                    <option value="GirlGroup" >GirlGroup</option>
+                    <option value="Solista Masculino" >Solista Masculino</option>
+                    <option value="Solista Femenina" >Solista Femenina</option>
                     <option value="Duo">Duo</option>
-                    <option value="Grupo Mixto">Grupo Mixto</option>
+                    <option value="Grupo Mixto" >Grupo Mixto</option>
                 </select>
 
                 <button>Agregar</button>
@@ -101,6 +172,7 @@
     <script src="JavaScript/menuham.js"></script>
     <script src="JavaScript/validaciones.js"></script>
     <script src="JavaScript/listarArtistas.js"></script>
+    <script src="JavaScript/cargarInformacion.js"></script>
 
 </body>
 </html>

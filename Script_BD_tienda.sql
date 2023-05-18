@@ -253,8 +253,14 @@ BEGIN
                                AND s.ses_fin IS NULL
                                ORDER BY ses_inicio DESC
                                LIMIT 1));
-	END IF;
-    
+	END IF;    
+END$$
+
+DELIMITER $$
+CREATE PROCEDURE insertarDisco (IN usuario VARCHAR(255), IN disco VARCHAR(255), IN fecha DATETIME, IN precio DOUBLE, IN existencia INT, IN artista VARCHAR(255))
+BEGIN	
+    INSERT INTO discos (dis_nombre, dis_flanzamiento, dis_precioUnitario, dis_existencia, art_id, ses_id)
+    VALUES (disco, fecha, precio, existencia, (SELECT art_id FROM artistas WHERE art_nombre = artista), (SELECT s.ses_id FROM sesiones AS s JOIN usuarios AS u ON(s.usr_id = u.usr_id) WHERE (u.usr_nombre = usuario) ORDER BY s.ses_inicio DESC LIMIT 1));
 END$$
 
 -- ----------------------------------------------------------------------------------------------------
@@ -314,3 +320,10 @@ VALUES ('Ivan', aes_encrypt('ivan', 'claveContrasenia'), 'Jefe');
 
 
 SELECT * FROM sesiones;
+
+SELECT * FROM artistas;
+
+UPDATE artistas SET art_nombre = 'NCT - DOJAEJUNG' WHERE art_id = 97;
+SELECT * FROM artistas;
+
+SELECT * FROM discos;
