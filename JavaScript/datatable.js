@@ -9,6 +9,7 @@ class DataTable {
     pagination;
     numberOfEntries;
     headerButtons;
+    hola;
 
     constructor(selector, headerButtons){
         this.element = document.querySelector(selector);

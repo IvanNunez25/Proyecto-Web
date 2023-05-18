@@ -1,4 +1,6 @@
+
 <?php
+//Factura comprobante
 require('fpdf.php');
 $pdf = new PDF_Code128('P','mm','Letter');
 $pdf->SetMargins(17,17,17);
@@ -96,6 +98,7 @@ while($row=$ejecucionNom->fetch_assoc())
 {
 	$pdf->Cell(90,7,$row['dis_nombre'],'L',1,'C');
 }
+
 //Columna de cantidad
 while($row=$ejecucionNom->fetch_assoc())
 {
