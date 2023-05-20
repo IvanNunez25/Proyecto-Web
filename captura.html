@@ -75,7 +75,7 @@
 
                     <label>Tipo de artista:</label>
                     <select onchange="cambiar()" name="comboBox" id="comboBox">
-                        <option value="" selected>Todos</option>
+                        <option value="Todos" selected>Todos</option>
                         <option value="BoyGroup">BoyGroup</option>
                         <option value="GirlGroup">GirlGroup</option>
                         <option value="Solista Masculino">Solista Masculino</option>
@@ -92,7 +92,7 @@
             </div>
 
 
-            <div class="container my-4">
+            <div class="container my-4 contenedor-de-tabla">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-xl-12">
                         <table class="table" id="datatable_usuarios">
@@ -119,33 +119,54 @@
 
     <div class="captura">
         <h2>Ingresa un nuevo artista:</h2>
-        <div class="formulario">
-            <form name="formularioInsertarArtista" onsubmit="return ValidarArtista()" method="POST"
-                action="PHP/InsertarArtista.php">
-                <label>Nombre: *</label>
-                <input type="text" name="artista" id="artista">
+        <div class="contenedor">
+            <div class="formulario">
+                <form name="formularioInsertarArtista" onsubmit="return ValidarArtista()" method="POST"
+                    action="PHP/InsertarArtista.php">
+                    <label>Nombre: *</label>
+                    <input type="text" name="artista" id="artista">
 
-                <label>Tipo: *</label>
-                <select name="tipo" id="tipo">
-                    <option value="BoyGroup" selected>BoyGroup</option>
-                    <option value="GirlGroup">GirlGroup</option>
-                    <option value="Solista Masculino">Solista Masculino</option>
-                    <option value="Solista Femenina">Solista Femenina</option>
-                    <option value="Duo">Duo</option>
-                    <option value="Grupo Mixto">Grupo Mixto</option>
-                </select>
+                    <label>Tipo: *</label>
+                    <select name="tipo" id="tipo">
+                        <option value="BoyGroup" selected>BoyGroup</option>
+                        <option value="GirlGroup">GirlGroup</option>
+                        <option value="Solista Masculino">Solista Masculino</option>
+                        <option value="Solista Femenina">Solista Femenina</option>
+                        <option value="Duo">Duo</option>
+                        <option value="Grupo Mixto">Grupo Mixto</option>
+                    </select>
 
-                <button>Agregar</button>
-            </form>
-        </div>
-        <div class="tabla">
+                    <button>Agregar</button>
+                </form>
+            </div>
 
+            <div class="container my-4 contenedor-de-tabla">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xl-12">
+                        <table class="table" id="datatable_artistas">
+                            <thead>
+                                <tr>
+                                    <th class="centrado">#</th>
+                                    <th class="centrado">Artista</th>
+                                    <th class="centrado">Tipo</th>
+                                    <th class="centrado">Número de productos</th>
+                                    <th class="centrado">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody_artistas"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="JavaScript/menuham.js"></script>
     <script src="JavaScript/validaciones.js"></script>
     <script src="JavaScript/listarArtistas.js"></script>
+    <script src="JavaScript/tablaProductos.js"></script>
+    <script src="JavaScript/tablaArtistas.js"></script>
+    
     <!-- <script src="JavaScript/cargarInformacion.js"></script> -->
 
     <!-- Bootstrap -->
@@ -159,8 +180,6 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <!-- Sweet Alert 2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.5/sweetalert2.min.js"></script>
-    <!-- Script propio -->
-    <script src="JavaScript/nuevadatatble.js"></script>
 
 </body>
 

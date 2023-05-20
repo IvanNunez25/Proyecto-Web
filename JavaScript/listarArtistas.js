@@ -27,24 +27,35 @@ function cambiar() {
     const tipo = document.querySelector('#comboBox').value;
     limpiar()
 
-    fetch('./PHP/ListarArtistas.php', opciones)
-    .then(respuesta => respuesta.json())
-    .then(resultado => {
+    if(tipo != 'Todos'){
+        fetch('./PHP/ListarArtistas.php', opciones)
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
 
-        resultado.forEach(element => {
-            if(element.art_tipo == tipo){
+            resultado.forEach(element => {
+                if(element.art_tipo == tipo){
+                    const option = document.createElement('OPTION');
+                    option.value = element.art_nombre;
+                    option.text = element.art_nombre;
+                    $select.appendChild(option); 
+                } 
+            })             
+        })
+    } else {
+        fetch('./PHP/ListarArtistas.php', opciones)
+        .then(respuesta => respuesta.json())
+        .then(resultado => {
+
+            resultado.forEach(element => {
                 const option = document.createElement('OPTION');
                 option.value = element.art_nombre;
                 option.text = element.art_nombre;
-                $select.appendChild(option); 
-            } else {
-                const option = document.createElement('OPTION');
-                option.value = element.art_nombre;
-                option.text = element.art_nombre;
-                $select.appendChild(option);   
-            }
-        })             
-    })
+                $select.appendChild(option);                    
+            })             
+        })
+    }
+
+    
 
 }
 
