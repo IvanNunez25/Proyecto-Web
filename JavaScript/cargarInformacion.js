@@ -1,14 +1,9 @@
-const opciones = {
-    method: 'POST'
-}
-
 const tabla = document.querySelector('#datatable tbody');
 
-fetch('./PHP/MostrarProductos.php', opciones)
+const listado = async ()  => {
+    await fetch('./PHP/MostrarProductos.php', opciones)
     .then(respuesta => respuesta.json())
     .then(resultado => {
-
-        console.log(resultado);
 
         resultado.forEach(element => {
             const renglon = document.createElement('TR');
@@ -18,3 +13,6 @@ fetch('./PHP/MostrarProductos.php', opciones)
             })
         })             
     })
+}
+
+document.addEventListener('load', listado());    

@@ -14,8 +14,6 @@ fetch('./PHP/ListarArtistas.php', opciones)
     .then(respuesta => respuesta.json())
     .then(resultado => {
 
-        console.log(resultado);
-
         resultado.forEach(element => {
             const option = document.createElement('OPTION');
             option.value = element.art_nombre;
@@ -33,14 +31,18 @@ function cambiar() {
     .then(respuesta => respuesta.json())
     .then(resultado => {
 
-        console.log(resultado);
-
         resultado.forEach(element => {
             if(element.art_tipo == tipo){
-            const option = document.createElement('OPTION');
-            option.value = element.art_nombre;
-            option.text = element.art_nombre;
-            $select.appendChild(option); }                      
+                const option = document.createElement('OPTION');
+                option.value = element.art_nombre;
+                option.text = element.art_nombre;
+                $select.appendChild(option); 
+            } else {
+                const option = document.createElement('OPTION');
+                option.value = element.art_nombre;
+                option.text = element.art_nombre;
+                $select.appendChild(option);   
+            }
         })             
     })
 
