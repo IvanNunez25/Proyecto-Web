@@ -22,18 +22,24 @@ function ValidarRegistro(){
     
     /* Validación de campos NO vacios */
     if((document.formularioRegistrase.usuario.value.length == 0) ||
+       (document.formularioRegistrase.correo.value.length == 0) ||
        (document.formularioRegistrase.contra.value.length == 0)){
 
         alert('Todos los campos deben ser llenados correctamente');
         return false;
     }
 
-    var expresionRegularUsuario = /^[a-zA-Z0-9 ]+$/;
-    
+    var expresionRegularUsuario = /^[a-zA-Z0-9 ]+$/;    
     if(!(expresionRegularUsuario.test(document.formularioRegistrase.usuario.value))) {
         alert('El nombre de usuario no debe contener caracteres especiales');
         return false;
     }   
+
+    var expresionRegularCorreo = /^([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+    if(!expresionRegularCorreo.test(document.formularioRegistrase.correo.value)){
+        alert('Debe ser un correo válido');
+        return false;
+    }
 
     return true;
 }

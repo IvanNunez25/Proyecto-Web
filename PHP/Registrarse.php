@@ -5,6 +5,7 @@ require 'Conexion.php';
 include "../miCuenta.html";
 
 $usuario = $_POST["usuario"];
+$correo = $_POST["correo"];
 $passw = $_POST["contra"];
 
 if(($usuario != "") && ($passw != "")){
@@ -17,7 +18,7 @@ if(($usuario != "") && ($passw != "")){
     if($numUsuarios < 1){
 
         $_SESSION['usuario'] = $usuario;
-        $sql = "INSERT INTO clientes (cte_nombre, cte_password, cte_fcreacion) VALUES ('".$usuario."', aes_encrypt('".$passw."', 'claveContrasenia'), SYSDATE());";       
+        $sql = "INSERT INTO clientes (cte_nombre, cte_password, cte_correo, cte_fcreacion) VALUES ('".$usuario."', aes_encrypt('".$passw."', 'claveContrasenia'), '".$correo."', SYSDATE());";       
         mysqli_query($conexion, $sql);
        
         $sql = "SELECT obtenerNuevoClienteID('".$usuario."') AS cliente_id;";

@@ -71,7 +71,7 @@ function eliminar(ID_artista) {
         confirmButtonText: 'Eliminar',
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = `PHP/EliminarArtistao.php?id=${ID_artista}`;
+            window.location.href = `PHP/EliminarArtista.php?id=${ID_artista}`;
         }
     })
 }

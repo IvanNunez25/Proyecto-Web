@@ -57,7 +57,7 @@
         <h2>Productos más recientes:</h2>
 
         <?php
-            $sql = "SELECT * FROM productosmasrecientes LIMIT 10;";
+            $sql = "SELECT * FROM productosmasrecientes LIMIT 11;";
             $ejecucion = mysqli_query($conexion, $sql);        
         ?>
 

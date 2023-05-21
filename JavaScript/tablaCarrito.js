@@ -41,7 +41,7 @@ const iniciarDataTable = async () => {
 const listarUsuarios = async () => {
     try {
         // const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        const response = await fetch('./PHP/MostrarProductos.php', opciones);
+        const response = await fetch('./PHP/MostrarCarrito.php');
         const usuarios = await response.json();
 
         let content = ``;
@@ -49,12 +49,12 @@ const listarUsuarios = async () => {
             content += `
                 <tr>
                     <td>${index + 1}</td>
-                    <td>${usuario.dis_nombre}</td>
-                    <td>${usuario.dis_flanzamiento}</td>
-                    <td>${usuario.dis_precioUnitario}</td>
-                    <td>${usuario.dis_existencia}</td>
                     <td>${usuario.art_nombre}</td>
-                    <td><button class="btn btn-sm btn-danger" onclick='eliminarProducto(${usuario.dis_id})'><i class="fa-solid fa-trash"></i></button></td>
+                    <td>${usuario.dis_nombre}</td>
+                    <td>${usuario.cardis_cantidad}</td>
+                    <td>${usuario.dis_precioUnitario}</td>
+                    <td>${usuario.cardis_cantidad * usuario.dis_precioUnitario}</td>
+                    <td><button class="btn btn-sm btn-danger" onclick='eliminarProducto(${usuario.cardis_id})'><i class="fa-solid fa-trash"></i></button></td>
                 </tr>`;
         });
 
