@@ -17,10 +17,9 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
+
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- DataTable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <!-- Font Awesome -->
@@ -53,6 +52,26 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
 
 <body>
 
+
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <style>
+        /* Media query for mobile viewport */
+        @media screen and (max-width: 400px) {
+            .paypal-button-container {
+                width: 100%;
+            }
+        }
+
+        /* Media query for desktop viewport */
+        @media screen and (min-width: 400px) {
+            .paypal-button-container {
+                width: 250px;
+                display: inline-block;
+            }
+        }
+    </style>
+
     <div class="mc-encabezado">
         <div class="perfil-encabezado">
             <div class="perfil-imagen"></div>
@@ -82,7 +101,7 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
 
     <div class="mc-carrito">
         <div class="carrito contenedor sombra">
-            <h3>Productos de tu carrito:
+            <h3>Productos de tu carrito: </h3>
             <div class="container my-4 contenedor-de-tabla">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-xl-12">
@@ -103,6 +122,7 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
                     </div>
                 </div>
             </div>
+            <div id="paypal-button-container"> </div>
         </div>
 
         <div class="carrito contenedor sombra">
@@ -140,13 +160,120 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
         </div>
     </div>
 
+    <script>
+        paypal.Button.render({
+            env: 'sandbox', // sandbox | production
+            style: {
+                label: 'checkout', // checkout | credit | pay | buynow | generic
+                size: 'large', // small | medium | large | responsive
+                shape: 'rect', // pill | rect
+                color: 'blue' // gold | blue | silver | black
+            },
+
+            // PayPal Client IDs - replace with your own
+            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+            client: {
+                sandbox: 'AcFC6Kxd73VrJLtqOJZnUSatcGMZcUbRyzBnFB2Km2gIqlmJVg2FhRhPV1sp4YznvIgMEfycWzMayQ2w',
+                production: '<insert production client id>'
+            },
+
+            // Wait for the PayPal button to be clicked
+
+            payment: async function(data, actions) {
+
+                const respuesta = await fetch('PHP/MostrarCarrito.php');
+                const datos = await respuesta.json();
+                let totalPrecio = 20;
+                totalPrecio = calcularTotalPrecio(datos);
+
+                return actions.payment.create({
+                    payment: {
+                        transactions: [{
+                            amount: {
+                                total: totalPrecio,
+                                currency: 'MXN'
+                            },
+                            // description:"",
+                            // custom:"Codigo"
+                        }]
+                    }
+                });
+            },
+
+            // Wait for the payment to be authorized by the customer
+
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(async function() {
+
+                    const respuesta = await fetch('PHP/MostrarCarrito.php');
+                    const datos = await respuesta.json();
+
+                    datos.forEach(registro => {
+
+                        if (registro.cardis_cantidad > registro.dis_existencia) {
+                            ejecutarProcedimiento(registro.dis_id, registro.cardis_cantidad);
+                            eliminarDelCarrito(registro.cardis_id);
+                        }
+                    })
+
+                    window.alert('¡Pago realizado!');
+                    window.location = "perfil.php";
+
+                });
+            }
+
+        }, '#paypal-button-container');
+
+        async function ejecutarProcedimiento(parametro1, parametro2) {
+
+            const formData = new FormData();
+            formData.append('parametro1', parametro1);
+            formData.append('parametro2', parametro2);
+
+            await fetch('PHP/ActualizarStock.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        function eliminarDelCarrito(id_pedido) {
+
+            const formDataEliminacion = new FormData();
+            formDataEliminacion.append('parametroPedidoID', id_pedido);
+            fetch('PHP/EliminarDelCarrito.php', {
+                    method: 'POST',
+                    body: formDataEliminacion
+                });
+        }
+
+        function calcularTotalPrecio(datos) {
+            let totalPrecio = 0;
+
+            for (let registro of datos) {
+
+                if (parseInt(registro.dis_existencia) >= parseInt(registro.cardis_cantidad)) {
+                    totalPrecio += (registro.cardis_cantidad * registro.dis_precioUnitario);
+                }
+            }
+
+            return totalPrecio;
+        }
+    </script>
+
+
 
 
     <script src="JavaScript/tablaCarrito.js"></script>
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <!-- DataTable -->
