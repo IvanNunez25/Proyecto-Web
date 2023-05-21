@@ -3,7 +3,7 @@
 session_start();
 require('Conexion.php');
 
-$consulta = mysqli_query($conexion, "SELECT a.art_nombre, d.dis_nombre, d.dis_precioUnitario, cd.cardis_cantidad, cd.cardis_id, cd.dis_id, d.dis_precioUnitario, d.dis_existencia
+$consulta = mysqli_query($conexion, "SELECT a.art_nombre, d.dis_nombre, d.dis_precioUnitario, cd.cardis_cantidad, cd.cardis_id, cd.dis_id, d.dis_precioUnitario, d.dis_existencia, d.dis_id
                                      FROM artistas as a
                                      JOIN discos as d ON (a.art_id = d.art_id)
                                      JOIN carritos_discos as cd ON (d.dis_id = cd.dis_id)

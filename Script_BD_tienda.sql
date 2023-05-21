@@ -131,6 +131,18 @@ ADD CONSTRAINT FKcardis_disid FOREIGN KEY (dis_id) REFERENCES discos (dis_id);
 ALTER TABLE sesiones
 ADD CONSTRAINT FKsesiones_usrid FOREIGN KEY (usr_id) REFERENCES usuarios (usr_id);
 
+ALTER TABLE discos
+MODIFY COLUMN dis_flanzamiento DATE;
+
+ALTER TABLE artistas
+ADD UNIQUE (art_nombre);
+
+ALTER TABLE ventas 
+MODIFY COLUMN vta_numProductos INT NULL;
+
+ALTER TABLE ventas 
+MODIFY COLUMN vta_total DOUBLE NULL;
+
 
 -- ------------------------------------------------------------------------------------------
 -- FUNCIONES --------------------------------------------------------------------------------
@@ -167,6 +179,24 @@ BEGIN
 	DECLARE cliente_id INT;
     SET cliente_id = (SELECT cte_id FROM clientes WHERE (cte_nombre = cliente_name));
     RETURN cliente_id;   
+END$$
+
+DELIMITER $$
+CREATE FUNCTION obtenerExistencia (disco_id INT)
+RETURNS INT
+BEGIN
+	DECLARE disco_existencia INT;
+    SET disco_existencia = (SELECT dis_existencia FROM discos WHERE (dis_id = disco_id));
+    RETURN disco_existencia;   
+END$$
+
+DELIMITER $$
+CREATE FUNCTION obtenerPrecio (disco_id INT)
+RETURNS INT
+BEGIN
+	DECLARE disco_precio INT;
+    SET disco_precio = (SELECT dis_precioUnitario FROM discos WHERE (dis_id = disco_id));
+    RETURN disco_precio;   
 END$$
 
 
@@ -263,6 +293,13 @@ BEGIN
     VALUES (disco, fecha, precio, existencia, (SELECT art_id FROM artistas WHERE art_nombre = artista), (SELECT s.ses_id FROM sesiones AS s JOIN usuarios AS u ON(s.usr_id = u.usr_id) WHERE (u.usr_nombre = usuario) ORDER BY s.ses_inicio DESC LIMIT 1));
 END$$
 
+DELIMITER $$
+CREATE PROCEDURE insertarVenta (IN cliente VARCHAR(255))
+BEGIN	
+    INSERT INTO ventas (vta_fecha, cte_id)
+    VALUES (SYSDATE(), (SELECT cte_id FROM clientes WHERE (cte_nombre = 'Ivan Nunez')));
+END$$
+
 -- ----------------------------------------------------------------------------------------------------
 -- VISTAS ---------------------------------------------------------------------------------------------
 
@@ -319,11 +356,39 @@ INSERT INTO usuarios (usr_nombre, usr_password, usr_puesto)
 VALUES ('Ivan', aes_encrypt('ivan', 'claveContrasenia'), 'Jefe');
 
 
+-- --------------------------------------------------------------------------------
+
+
 SELECT * FROM sesiones;
-
 SELECT * FROM artistas;
-
-UPDATE artistas SET art_nombre = 'NCT - DOJAEJUNG' WHERE art_id = 97;
-SELECT * FROM artistas;
-
+SELECT * FROM clientes;
 SELECT * FROM discos;
+SELECT * FROM carritos_discos;
+
+SELECT a.art_id, a.art_nombre, a.art_tipo, COUNT(d.dis_id)
+FROM artistas AS a
+LEFT JOIN discos AS d ON (a.art_id = d.art_id)
+GROUP BY a.art_id;
+
+UPDATE artistas SET art_tipo = 'GirlGroup' WHERE art_nombre = 'LE SSERAFIM';
+
+SELECT a.art_nombre, d.dis_nombre, d.dis_precioUnitario, cd.cardis_cantidad, cd.cardis_id, cd.dis_id, d.dis_precioUnitario, d.dis_existencia
+ FROM artistas as a
+ JOIN discos as d ON (a.art_id = d.art_id)
+ JOIN carritos_discos as cd ON (d.dis_id = cd.dis_id)
+ JOIN carritos as c ON (cd.car_id = c.car_id)
+ JOIN clientes as cl ON (c.cte_id = cl.cte_id)
+ WHERE cl.cte_nombre = 'Ivan Nunez';
+ 
+SELECT v.vta_id 
+FROM ventas AS v 
+JOIN clientes AS c ON (c.cte_id = v.cte_id)
+WHERE (cte_nombre = 'Ivan Nunez');
+ORDER BY v.vta_fecha
+LIMIT 1;
+
+SELECT * FROM detalles;
+SELECT * FROM ventas;
+
+INSERT INTO detalles (det_catidad, det_precioActual, det_subtotal, vta_id, dis_id) 
+VALUES(1, '".$precio."', '".$subtotal."',  '".$venta_id."', '".$disco_id."');

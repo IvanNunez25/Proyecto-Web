@@ -203,25 +203,156 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
 
             // Wait for the payment to be authorized by the customer
 
+            // onAuthorize: function(data, actions) {
+            //     return actions.payment.execute().then(async function() {
+
+            //         const respuesta = await fetch('PHP/MostrarCarrito.php');
+            //         const datos = await respuesta.json();
+            //         let numProductos = 0,
+            //             subtotal = 0,
+            //             total = 0;
+
+
+            //         // Insertar en Ventas (Por mientras se iniciará para obtener el ID de venta ):                    
+            //         fetch('PHP/InsertarVenta.php', {
+            //             method: 'POST'
+            //         });
+
+            //         const respuesta2 = await fetch('PHP/ObtenerIDVenta.php');
+            //         const id_venta = await respuesta2.json();
+            //         const ID = 0;
+
+            //         id_venta.forEach(id => {
+            //             ID = id.vta_id;
+            //             console.log(ID);
+            //         })
+
+
+            //         datos.forEach(registro => {
+
+            //             if (registro.cardis_cantidad > registro.dis_existencia) {
+            //                 ejecutarProcedimiento(registro.dis_id, registro.cardis_cantidad);
+
+            //                 numProductos++;
+            //                 subtotal = (registro.cardis_cantidad * registro.dis_precioUnitario);
+            //                 total += subtotal;
+
+            //                 // Insertar en Detalles:
+            //                 const formDataDetalles = new FormData();
+            //                 formDataDetalles.append('parametroCantidad', registro.cardis_cantidad);
+            //                 formDataDetalles.append('parametroPrecio', registro.dis_precioUnitario);
+            //                 formDataDetalles.append('parametroSubTotal', subtotal);
+            //                 formDataDetalles.append('parametroIDDisco', registro.dis_id);
+            //                 formDataDetalles.append('parametroIDVenta', ID);
+            //                 fetch('PHP/InsertarDetalle.php', {
+            //                     method: 'POST',
+            //                     body: formDataDetalles
+            //                 });
+
+
+            //                 eliminarDelCarrito(registro.cardis_id);
+            //             }
+            //         })
+
+            //         // Modificar en Ventas el registro (Total y num de productos):                    
+            //         const formDataVenta = new FormData();
+            //         formDataVenta.append('parametroTotal', total);
+            //         formDataVenta.append('parametroNumProductos', numProductos);
+            //         formDataVenta.append('parametroID', ID);
+            //         fetch('PHP/ActualizarVenta.php', {
+            //             method: 'POST',
+            //             body: formDataVenta
+            //         });
+
+            //         window.alert('¡Pago realizado!');
+            //         window.location = "perfil.php";
+
+            //     });
+            // }
+
             onAuthorize: function(data, actions) {
                 return actions.payment.execute().then(async function() {
+
+                    let numProductos = 0,
+                        subtotal = 0,
+                        total = 0;
+
+                    await fetch('PHP/InsertarVenta.php', {
+                        method: 'POST'
+                    });
+
+                    const respuesta2 = await fetch('PHP/ObtenerIDVenta.php');
+                    const id_venta = await respuesta2.json();
+                    let ID = 0;
+
+                    id_venta.forEach(id => {
+                        ID = id.vta_id;
+                        console.log(ID);
+                    });
+
 
                     const respuesta = await fetch('PHP/MostrarCarrito.php');
                     const datos = await respuesta.json();
 
-                    datos.forEach(registro => {
+                    console.log(datos);
 
-                        if (registro.cardis_cantidad > registro.dis_existencia) {
-                            ejecutarProcedimiento(registro.dis_id, registro.cardis_cantidad);
-                            eliminarDelCarrito(registro.cardis_id);
+                    const promesasDetalle = datos.map(async registro => {
+
+                        if (registro.dis_existencia > registro.cardis_cantidad) {
+
+                            await ejecutarProcedimiento(registro.dis_id, registro.cardis_cantidad);
+
+                            numProductos += 1;
+                            console.log('Cuenta: ' + numProductos);
+
+                            subtotal = (registro.cardis_cantidad * registro.dis_precioUnitario);
+                            total += subtotal;
+
+                            console.log('Cantidad: ' + registro.cardis_cantidad);
+                            console.log('Precio: ' + registro.dis_precioUnitario);
+                            console.log('SubTotal: ' + subtotal);
+                            console.log('ID Disco: ' + registro.dis_id);
+                            console.log('ID Venta: ' + ID);
+
+                            const formDataDetalles = new FormData();
+                            formDataDetalles.append('parametroCantidad', registro.cardis_cantidad);
+                            formDataDetalles.append('parametroPrecio', registro.dis_precioUnitario);
+                            formDataDetalles.append('parametroSubTotal', subtotal);
+                            formDataDetalles.append('parametroIDDisco', registro.dis_id);
+                            formDataDetalles.append('parametroIDVenta', ID);
+
+                            return fetch('PHP/InsertarDetalle.php', {
+                                method: 'POST',
+                                body: formDataDetalles
+                            });
                         }
-                    })
+                    });
+
+                    await Promise.all(promesasDetalle);
+
+                    console.log('Total: $' + total);
+                    console.log('Productos: ' + numProductos);
+                    console.log('ID: ' + ID);
+
+                    const formDataVenta = new FormData();
+                    formDataVenta.append('parametroTotal', total);
+                    formDataVenta.append('parametroNumProductos', numProductos);
+                    formDataVenta.append('parametroID', ID);
+
+                    await fetch('PHP/ActualizarVenta.php', {
+                        method: 'POST',
+                        body: formDataVenta
+                    });
+
+                    datos.forEach(registro => {
+                        eliminarDelCarrito(registro.cardis_id);
+                    });
 
                     window.alert('¡Pago realizado!');
-                    window.location = "perfil.php";
-
+                    // window.location = "perfil.php";
                 });
             }
+
 
         }, '#paypal-button-container');
 
@@ -249,9 +380,9 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
             const formDataEliminacion = new FormData();
             formDataEliminacion.append('parametroPedidoID', id_pedido);
             fetch('PHP/EliminarDelCarrito.php', {
-                    method: 'POST',
-                    body: formDataEliminacion
-                });
+                method: 'POST',
+                body: formDataEliminacion
+            });
         }
 
         function calcularTotalPrecio(datos) {
