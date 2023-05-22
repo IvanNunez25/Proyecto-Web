@@ -4,8 +4,8 @@ let dataTableInicializada = false;
 
 const dataTableOpciones = {
     columnDefs: [
-        { className: "centrado", targets: [6] },
-        { orderable: false, targets: [6] }
+        { className: "centrado", targets: [6, 7] },
+        { orderable: false, targets: [6, 7] }
     ],
     pageLength: 10,
     destroy: true,
@@ -40,7 +40,6 @@ const iniciarDataTable = async () => {
 
 const listarUsuarios = async () => {
     try {
-        // const response = await fetch('https://jsonplaceholder.typicode.com/users');
         const response = await fetch('./PHP/MostrarCarrito.php');
         const usuarios = await response.json();
 
@@ -54,6 +53,7 @@ const listarUsuarios = async () => {
                     <td>${usuario.cardis_cantidad}</td>
                     <td>${usuario.dis_precioUnitario}</td>
                     <td>${usuario.cardis_cantidad * usuario.dis_precioUnitario}</td>
+                    <td>${parseInt(usuario.cardis_cantidad) <= parseInt(usuario.dis_existencia) ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-xmark"></i>'}</td>
                     <td><button class="btn btn-sm btn-danger" onclick='eliminarProducto(${usuario.cardis_id})'><i class="fa-solid fa-trash"></i></button></td>
                 </tr>`;
         });
