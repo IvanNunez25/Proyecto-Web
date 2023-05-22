@@ -1,0 +1,438 @@
+:root{
+    --pompNpower: #966B9D;
+    --oldRose: #C98686;
+    --fawn: #F2B880;
+    --seaShell: #FFF4EC;
+    --champagnePink: #E7CFBC;
+
+
+    --blanco: #ffffff;
+    --negro: #000000;
+
+    /*
+    font-family: 'Krub', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    */
+   
+}
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+body{
+    font-size: 16px; /* 1 rem = 10px*/
+    font-family: 'Quicksand', sans-serif;
+    /*background-image: linear-gradient(to top, var(--oldRose), var(--blanco) 100%);*/
+}
+
+h1{
+    font-size: 5rem;
+}
+
+h2{
+    font-size: 3rem;
+}
+h3{
+    font-size: 2rem;
+}
+h1, h2, h3{
+    text-align: center;
+}
+
+.encabezado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.contenedor{
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.sombra{
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.54);
+    background-color: var(--blanco);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+}
+
+
+/* BARRA DE NAVEGACIÓN ------------------------------------*/
+
+.navegacion{
+    background-color: var(--pompNpower);    
+}
+
+.barra-navegacion{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 480px) {
+    .barra-navegacion{
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.barra-navegacion a{
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.barra-navegacion a:hover{
+    background-color: var(--champagnePink);
+    color: var(--negro);
+}
+/*Boton de formulario*/
+.boton{
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    padding: 1rem;
+}
+.boton h1{
+    color: #ccc;
+    font-size: 2rem;
+    align-content: center;
+}
+.boton:hover{
+    background-color:#c4b2c7;
+    color: var(--negro);
+}
+
+
+/* IMAGEN BONITA ------------------------------------*/
+
+.imagenPrincipal{
+    background-image: url(../Imagenes/paisajeCorea2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45rem;
+    padding: 0;
+    position: relative;
+    margin-bottom: 2rem;    
+}
+.imagenContacto{
+    background-image: url(../Imagenes/paisajeCorea4.png);
+    background-size: cover;
+    height: 40rem;
+    padding:0;
+    position: relative;
+    margin-bottom: 2rem;
+}
+.imagenNosotros{
+    background-image: url(../Imagenes/paisajeCorea5.png);
+    background-size: cover;
+    height: 30rem;
+    padding:0;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.informacion{
+    position: absolute;
+    font-size: 5rem;
+    background-color: rgb(0 0 0 / 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+
+.informacion h2{
+    color: var(--blanco);
+}
+.informacion h3{
+    color: beige;
+    font-size: 2rem;
+}
+/*FORMULARIO DE CONTACTO--------------------------------*/
+.informacionContacto{
+    position: absolute;
+    font-size: 5rem;
+    background-color: rgb(0 0 0 / 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;   
+}
+.informacionContacto h1{
+    color: #ffffff;
+}
+.informacionContacto h2{
+    color: var(--champagnePink);
+}
+.informacionContacto h3{
+    color: var(--pompNpower);
+}
+/*Formulario de datos-----------------------------*/
+.informacionFormulario{
+    position: relative;
+    font-size: 2rem;
+    background-color: rgb(255 255 255);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;   
+}
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+.informacionFormulario h1{
+    color: #ffffff;
+}
+.informacionFormulario h2{
+    color: var(--fawn);
+}
+.informacionFormulario h3{
+    color: var(--pompNpower);
+}
+.formulario{
+    display:block;
+    margin: 0 auto;
+    width: 50%;
+    padding: 20px;
+    background-color: var(--pompNpower);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 0.5);
+}
+
+/*  GALERIA --------------------------------*/
+@media (min-width: 480px) {
+    .galeria{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);        
+        grid-template-rows: repeat(3, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .galeria{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);        
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+}
+/*NOSOTROS*/
+@media (min-width: 480px) {
+    .nosotros{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);        
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 3rem;
+        row-gap: 3rem;
+    }
+}
+
+@media (min-width: 760px) {
+    .nosotros{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);        
+        grid-template-rows: repeat(1, 1fr);
+        column-gap: 3rem;
+        row-gap: 3rem;
+    }
+}
+.imgGral{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    font-weight: bolder;
+}
+
+.img1{
+    background-image: url(../Imagenes/Albums/heize_happen_album.webp);    
+}
+
+.img2{
+    background-image: url(../Imagenes/Albums/ae_girls_album.jpg)
+}
+
+.img3{
+    background-image: url(../Imagenes/Albums/nj_nwjns_album.jpg);    
+}
+
+.img4{
+    background-image: url(../Imagenes/Albums/w_voiceless_album.jpg);    
+}
+
+.img5{
+    background-image: url(../Imagenes/Albums/rv_fmr_album.png);    
+}
+
+.img6{
+    background-image: url(../Imagenes/Albums/kyu_ag_album.jpg);    
+}
+/*Imagenes sobreNosotros*/
+.img7{
+    background-image: url(../Imagenes/foto1.jpg);
+}
+.img8{
+    background-image: url(../Imagenes/foto2.jpg);
+}
+
+.sombreado{    
+    position: inherit;  
+    font-size: 2rem;
+    background-color: rgb(0 0 0 / 0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+
+.sombreado:hover{
+    background-color: rgb(0 0 0 / 0.2);
+}
+
+.galeria h2, .galeria h3{
+    color: var(--blanco);
+}
+.nosotros h2, .nosotros h3{
+    color: var(--blanco);
+}
+
+/* NUMEROS -----------------------------------------*/
+
+.estadisticas{
+    padding: 2rem;
+    color: var(--negro);
+}
+
+.numeros{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 1rem;
+}
+
+.numeros .sombra{
+    box-shadow: 0px 5px 15px 0px var(--pompNpower);
+}
+
+@media (min-width: 480px) {
+    .numeros{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .numeros{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+}
+
+
+/*  PIE DE PÁGINA --------------------------------*/
+
+.pie-pagina{
+    background-color: var(--pompNpower);
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .pie-pagina{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 2rem;
+    }
+}
+
+.infoPie{
+    margin-left: 3rem;
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.infoPie p{
+    font-size: 2.5rem;
+}
+
+.redes{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1rem;
+}
+
+.imgRedes{
+    background-repeat: no-repeat;
+    background-size:contain;
+    height: 5rem;
+}
+
+.red1{
+    background-image: url(../Imagenes/Redes/facebook.png);
+}
+
+.red2{
+    background-image: url(../Imagenes/Redes/gorjeo.png);
+}
+
+.red3{
+    background-image: url(../Imagenes/Redes/tik-tok.png);
+}
+
+.red4{
+    background-image: url(../Imagenes/Redes/youtube.png);
+}
+
+/*SobreNosotros*/
+.infoNosotros{
+   
+    position: relative;
+    font-size: 2rem;
+    background-color: rgba(255, 255, 255);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+}
+.infoNosotros h1{
+    font-size: 5rem;
+    color: #000000;
+}
+.infoNosotros h2{
+    font-size: 3rem;
+    color: var(--pompNpower);
+}

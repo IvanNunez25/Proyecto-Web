@@ -93,9 +93,11 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
     <div class="navegacion"> <!-- ------------------------------ -->
         <nav class="barra-navegacion">
             <a href="index.php">Inicio</a>
+            <a href="PHP/Cuenta.php">Mi Cuenta</a>
             <a href="catalogo.php">Catalogo</a>
-            <a href="#">Contacto</a>
-            <a href="#">Sobre Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="sobrenosotros.html">Sobre Nosotros</a>
+            <a href="PHP/CuentaAdmin.php">Administrador</a>
         </nav>
     </div>
 
@@ -134,24 +136,23 @@ if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['usuario'])) {
     <div class="pie-pagina"> <!-- ------------------------------ -->
 
         <div class="infoPie">
-            <h3>Ubicación</h3>
-            <p>
-                Aquí va una dirección <br>
-                que sea real
+            <h3 style="font-size: 30px;">Ubicación</h3>
+            <p style="font-size: 22px;">
+                Blvd. Revolución y Av. Instituto Tecnológico de La Laguna, Torreón, Coahuila, C.P. 27000
             </p>
         </div>
 
         <div class="infoPie">
-            <h3>Contacto</h3>
-            <p>
-                Y luego aquí va uno <br>
-                o varios numeros de <br>
-                contacto o correos
+            <h3 style="font-size: 30px;">Contacto</h3>
+            <p style="font-size: 22px;">
+                Desarrolladores: <br><br>
+                ivan25606@gmail.com <br>
+                marianjuache1@gmail.com
             </p>
         </div>
 
         <div class="infoPie">
-            <h3>Redes Sociales</h3>
+            <h3 style="font-size: 30px;">Redes Sociales</h3>
             <div class="redes">
                 <div class="red1 imgRedes"></div>
                 <div class="red2 imgRedes"></div>
