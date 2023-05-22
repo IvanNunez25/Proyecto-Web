@@ -4,7 +4,7 @@ let dataTableInicializada = false;
 
 const dataTableOpciones = {
     columnDefs: [
-        { className: "centrado", targets: [6, 7] },
+        { className: "centrado", targets: [3, 4, 5, 6, 7] },
         { orderable: false, targets: [6, 7] }
     ],
     pageLength: 10,
@@ -73,7 +73,7 @@ function eliminarProducto(ID_producto) {
         confirmButtonText: 'Eliminar',
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = `PHP/EliminarProducto.php?id=${ID_producto}`;
+            window.location.href = `PHP/EliminarDelCarrito2.php?id=${ID_producto}`;
         }
     })
 }
