@@ -1,11 +1,11 @@
 -- BASE DE DATOS: TIENDA
 -- PÁGINA WEB: kpopstore2.000webhostapp.com
 
-DROP DATABASE IF EXISTS tienda;
-CREATE DATABASE tienda;
+-- DROP DATABASE IF EXISTS tienda;
+-- CREATE DATABASE tienda;
 -- DROP DATABASE tienda;
 
-USE tienda;
+-- USE tienda;
 
 -- ------------------------------------------------------------------------------
 -- CREACIÓN DE TABLAS -----------------------------------------------------------
@@ -142,6 +142,9 @@ MODIFY COLUMN vta_numProductos INT NULL;
 
 ALTER TABLE ventas 
 MODIFY COLUMN vta_total DOUBLE NULL;
+
+ALTER TABLE ventas 
+MODIFY COLUMN cte_id INT NULL;
 
 
 -- ------------------------------------------------------------------------------------------
@@ -370,25 +373,26 @@ FROM artistas AS a
 LEFT JOIN discos AS d ON (a.art_id = d.art_id)
 GROUP BY a.art_id;
 
-UPDATE artistas SET art_tipo = 'GirlGroup' WHERE art_nombre = 'LE SSERAFIM';
 
 SELECT a.art_nombre, d.dis_nombre, d.dis_precioUnitario, cd.cardis_cantidad, cd.cardis_id, cd.dis_id, d.dis_precioUnitario, d.dis_existencia
- FROM artistas as a
- JOIN discos as d ON (a.art_id = d.art_id)
- JOIN carritos_discos as cd ON (d.dis_id = cd.dis_id)
- JOIN carritos as c ON (cd.car_id = c.car_id)
- JOIN clientes as cl ON (c.cte_id = cl.cte_id)
- WHERE cl.cte_nombre = 'Ivan Nunez';
+FROM artistas as a
+JOIN discos as d ON (a.art_id = d.art_id)
+JOIN carritos_discos as cd ON (d.dis_id = cd.dis_id)
+JOIN carritos as c ON (cd.car_id = c.car_id)
+JOIN clientes as cl ON (c.cte_id = cl.cte_id)
+WHERE cl.cte_nombre = 'Ivan Nunez';
  
-SELECT v.vta_id 
-FROM ventas AS v 
-JOIN clientes AS c ON (c.cte_id = v.cte_id)
-WHERE (cte_nombre = 'Ivan Nunez');
-ORDER BY v.vta_fecha
-LIMIT 1;
+-- CONSULTAS PARA HACER LAS ESTADISTICAS ------------------------------------------------------------------------
+SELECT a.art_nombre, d.dis_nombre, SUM(dt.det_cantidad)
+FROM artistas AS a
+JOIN discos AS d ON (a.art_id = d.art_id)
+JOIN detalles AS dt ON (d.dis_id = dt.dis_id)
+GROUP BY d.dis_nombre
+ORDER BY SUM(dt.det_cantidad) DESC;
 
-SELECT * FROM detalles;
-SELECT * FROM ventas;
-
-INSERT INTO detalles (det_catidad, det_precioActual, det_subtotal, vta_id, dis_id) 
-VALUES(1, '".$precio."', '".$subtotal."',  '".$venta_id."', '".$disco_id."');
+SELECT a.art_nombre, SUM(dt.det_cantidad)
+FROM artistas AS a
+JOIN discos AS d ON (a.art_id = d.art_id)
+JOIN detalles AS dt ON (d.dis_id = dt.dis_id)
+GROUP BY a.art_nombre
+ORDER BY SUM(dt.det_cantidad) DESC;
