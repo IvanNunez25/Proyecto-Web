@@ -396,3 +396,7 @@ JOIN discos AS d ON (a.art_id = d.art_id)
 JOIN detalles AS dt ON (d.dis_id = dt.dis_id)
 GROUP BY a.art_nombre
 ORDER BY SUM(dt.det_cantidad) DESC;
+
+SELECT * FROM VENTAS;
+SELECT * FROM DETALLES;
+

@@ -87,10 +87,7 @@ nav {
 /* Movil */
 
 @media (max-width: 768px) {
-    body{
-        /* overflow: hidden;         */
-    }
-
+    
     .logo {
         margin-left:25px;
     }
@@ -216,4 +213,23 @@ form button:hover {
         display: flex;
         flex-direction: row;
     }   
+}
+
+/* Charts */
+
+.div-charts {
+    margin: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.div-charts .titulo-chart {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.div-charts .canvas-chart {
+    padding: 25px;
+    width: 100%;
 }
