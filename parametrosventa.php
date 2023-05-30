@@ -273,9 +273,10 @@ if ($accion == "1") {
             </div>
         </div>
 
-
     </div>
-
+    <script>
+        window.print();
+    </script>
 </body>
 
 </html>
