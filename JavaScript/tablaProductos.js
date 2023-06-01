@@ -4,8 +4,8 @@ let dataTableInicializada = false;
 
 const dataTableOpciones = {
     columnDefs: [
-        { className: "centrado", targets: [6] },
-        { orderable: false, targets: [6] }
+        { className: "centrado", targets: [6, 7] },
+        { orderable: false, targets: [6, 7] }
     ],
     pageLength: 10,
     destroy: true,
@@ -54,6 +54,7 @@ const listarUsuarios = async () => {
                     <td>${usuario.dis_precioUnitario}</td>
                     <td>${usuario.dis_existencia}</td>
                     <td>${usuario.art_nombre}</td>
+                    <td><button class="btn btn-sm" onclick='editarProducto(${usuario.dis_id})'><i class="fa-solid fa-edit"></i></button></td>
                     <td><button class="btn btn-sm btn-danger" onclick='eliminarProducto(${usuario.dis_id})'><i class="fa-solid fa-trash"></i></button></td>
                 </tr>`;
         });
@@ -76,6 +77,11 @@ function eliminarProducto(ID_producto) {
             window.location.href = `PHP/EliminarProducto.php?id=${ID_producto}`;
         }
     })
+}
+
+function editarProducto(ID_producto) {
+    const url = `./editar.php?id=${ID_producto}`;
+    window.location.href = url;
 }
 
 window.addEventListener('load', async () => {
